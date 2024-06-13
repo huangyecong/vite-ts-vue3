@@ -11,6 +11,8 @@
     <div>--------------------分割线useUserListStore----------------</div>
     <p>User 1:{{ getUserById(1) }}</p>
     <p>User 3:{{ getUserById(3) }}</p>
+    <div>--------------------分割线actions ----------------</div>
+    <button @click="store.randommizeCounter()">Randomize</button>
   </div>
 </template>
 <script setup lang="ts">
@@ -46,4 +48,7 @@ const onChangeBaseUrl = () => {
 // userListStore
 const userListStore = useUserListStore()
 const { getUserById } = storeToRefs(userListStore)
+
+// actions use
+store.randommizeCounter()
 </script>

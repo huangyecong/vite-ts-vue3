@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "mande": "^2.0.9",
     "pinia": "^2.1.7",
     "vue": "^3.3.0"
   },

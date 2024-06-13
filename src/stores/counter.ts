@@ -22,6 +22,9 @@ export const useCounterStore = defineStore('counter', {
     },
     changeState(params: string) {
       this.baseUrl = params
+    },
+    randommizeCounter() {
+      this.count = Math.round(100 * Math.random())
     }
   },
 });
@@ -34,7 +37,11 @@ export const useCounterStore = defineStore('counter', {
 //   }
 //   return {count,doubleCount,increment}
 // })
+// mande has better defaults to communicate with APIs using fetch
+import { mande } from 'mande'
+const api = mande('/api/users')
 interface IUserState {
+  userData: any,
   userList: UserInfo[],
   user: string | null
 }
@@ -46,6 +53,7 @@ interface UserInfo {
 }
 export const useUserListStore = defineStore('userList', {
   state: (): IUserState => ({
+    userData: null,
     userList: [{
       id: 1,
       active: true,
@@ -69,8 +77,19 @@ export const useUserListStore = defineStore('userList', {
       return (userId: number): UserInfo | undefined => state.userList.find((user) => user.id === userId)
     },
     getActiveUserById: (state: IUserState) => {
-      const activeUserList = state.userList.filter((user:UserInfo) => user.active)
+      const activeUserList = state.userList.filter((user: UserInfo) => user.active)
       return (userId: number) => activeUserList.filter((user) => user.id === userId)
+    }
+  },
+  actions: {
+    async registerUser(login: string, password: string) {
+      try {
+        this.userData = await api.post({ login, password })
+        console.log(`Welcome back ${this.userData.name}`)
+      } catch (error) {
+        console.log('error', error)
+        return error
+      }
     }
   }
 })

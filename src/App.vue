@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import StoreTest from './components/StroeTest.vue'// pinia test
+import StoreTest from './components/StoreTest.vue'// pinia test
 </script>
 
 <template>
