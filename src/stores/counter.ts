@@ -3,13 +3,16 @@ import { defineStore } from 'pinia';
 // Options Store写法，现在是counter.ts
 interface ICounterState {
   count: number,
-  baseUrl: string
+  baseUrl: string,
+  name: string
 }
 export const useCounterStore = defineStore('counter', {
   state: (): ICounterState => ({
     count: 0,
-    baseUrl: 'https://cn.vuejs.org/'
+    baseUrl: 'https://cn.vuejs.org/',
+    name:'hello leaf~'
   }),
+  persist: true,//将useCounterStore使用默认持久化配置保存
   getters: {
     doubleCount: (state) => state.count * 2,
     doublePlusCount(): number {
