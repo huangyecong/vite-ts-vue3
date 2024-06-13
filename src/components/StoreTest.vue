@@ -13,6 +13,7 @@
     <p>User 3:{{ getUserById(3) }}</p>
     <div>--------------------分割线actions ----------------</div>
     <button @click="store.randommizeCounter()">Randomize</button>
+    <div>--------------------分割线 测试Pinia自定义插件 ----------------</div>
   </div>
 </template>
 <script setup lang="ts">
@@ -51,4 +52,8 @@ const { getUserById } = storeToRefs(userListStore)
 
 // actions use
 store.randommizeCounter()
+
+// 测试自定义插件，检验插件添加上去的全局属性是否已经成功添加上去
+console.log("测试自定义插件是否生效 store.secret =",store.secret)
+
 </script>
